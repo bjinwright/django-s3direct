@@ -2,11 +2,13 @@ import json
 
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 from .utils import create_upload_data, get_s3direct_destinations
 
 
 @require_POST
+@csrf_exempt
 def get_upload_params(request):
     content_type = request.POST['type']
     filename = request.POST['name']
